@@ -14,41 +14,46 @@ public class SentryExample {
         Sentry.init();
 
         try {
-            logger.info("Starting factorial calculation example");
+            logger.info("Starting application");
+            
+            // Call the processing method
+            logger.info("First Number List");
+            int[] numbers = {2, 3}; // Note: -1 will cause an exception
+            processNumbers(numbers);
 
-            // Example of calculating factorial
-            int number = 2;
-            long result = calculateFactorial(number);
+            logger.info("Second Number List");
+            numbers = new int[] {0}; // Note: -1 will cause an exception
+            processNumbers(numbers);
 
-            logger.info("Etapa 1 - Factorial of {} is {}", number, result);
 
-            // Example of calculating factorial
-            number = 3;
-            result = calculateFactorial(number);
-
-            logger.info("Etapa 2 - Factorial of {} is {}", number, result);
-
-            // Example of calculating factorial
-            number = 5;
-            result = calculateFactorial(number);
-
-            logger.info("Etapa 3 - Factorial of {} is {}", number, result);
-
+            logger.info("Last Number List");
+            numbers = new int[] {5, 6, -1}; // Note: -1 will cause an exception
+            processNumbers(numbers);
+            
             // Example of capturing a custom event
-            Sentry.captureMessage("Factorial calculation completed successfully", SentryLevel.INFO);
-
-            // Example of error handling with Sentry
-            try {
-                // This will throw an exception
-                calculateFactorial(-1);
-            } catch (IllegalArgumentException e) {
-                logger.error("Error calculating factorial", e);
-                Sentry.captureException(e);
-            }
-
+            Sentry.captureMessage("All calculations completed", SentryLevel.INFO);
+            
         } finally {
             // Ensure all events are sent before closing
             Sentry.close();
+        }
+    }
+
+    private static void processNumbers(int[] numbers) {
+        logger.info("Starting number processing");
+        
+        try {
+            // Process different numbers
+            
+            
+            for (int number : numbers) {
+                logger.info("Processing number: {}", number);
+                long result = calculateFactorial(number);
+                logger.info("Factorial of {} is {}", number, result);
+            }
+        } catch (IllegalArgumentException e) {
+            logger.error("Error in processNumbers", e);
+            Sentry.captureException(e);
         }
     }
 
@@ -56,11 +61,11 @@ public class SentryExample {
         if (n < 0) {
             throw new IllegalArgumentException("Factorial is not defined for negative numbers");
         }
-
+        
         if (n == 0 || n == 1) {
             return 1;
         }
-
+        
         long result = 1;
         for (int i = 2; i <= n; i++) {
             result *= i;
