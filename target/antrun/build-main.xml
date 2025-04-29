@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <exec output="/var/folders/b8/946nd6d9727_rtv8jc_vp2kr0000gn/T/maven11689887340246350894cli" failOnError="true" executable="/bin/sh">
+      <arg value="-c" />
+      <arg value="/var/folders/b8/946nd6d9727_rtv8jc_vp2kr0000gn/T/.sentry-cli11997189020833070126.exe --log-level=debug debug-files bundle-jvm --output=/Users/diogowinck/projects/projetos-github/sentry-example/target/sentry/source-bundle --debug-id=0a4f1097-4bea-45c5-bda1-b0874cc7a98c --org=sentry-ottimizza --project=sentry-example /Users/diogowinck/projects/projetos-github/sentry-example/target/sentry/collected-sources" />
+    </exec>
+  </target>
+</project>
